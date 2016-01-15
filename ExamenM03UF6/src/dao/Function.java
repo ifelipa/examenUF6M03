@@ -1,16 +1,20 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
 import db.Conectar;
+import db.DbUtil;
 
 public class Function {
 	private Connection conexion;
 	private Statement statement;
+	private PreparedStatement preparedStatement;
+	private ResultSet resultSet;
 	
 	public void createAlgoxStatement(){
 		conexion= Conectar.getInstance().createConnection();
@@ -18,14 +22,20 @@ public class Function {
 				+ "(?,?,?,CURRENT_TIMESTAMP,?,?)";
 		try {
 			statement = conexion.createStatement();
-			
+			resultSet = statement.executeQuery(sql);
+			writeResultSet(resultSet);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			DbUtil.close(conexion);
+			DbUtil.close(statement);
 		}
 		
 		
 	}
 	
+	public void createAlgoxPrepare(){
+	}
 	private void writeResultSet(ResultSet resultSet) throws SQLException {
 		
 		while (resultSet.next()) {
