@@ -10,7 +10,7 @@ public class Conectar {
 	
 	
 	private static Conectar instance = null;
-		public static final String URL = "jdbc:mysql://localhost/kitchen?";
+		public static final String URL = "jdbc:mysql://localhost/feedback?";
 		public static final String USER = "root";//"sqluser";
 		public static final String PASSWORD = "jupiter";//"sqluserpw";
 		public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
